@@ -28,3 +28,5 @@ jobs:
         run: cd ${{github.workspace}}/build && ./test
       - name: Run test with valgrind
         run: cd ${{github.workspace}}/build && valgrind --leak-check=full ./test
+      - name: Run clang-format
+        run: cd ${{github.workspace}} && ./clang-format-ci.sh
