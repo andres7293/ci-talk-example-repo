@@ -1,5 +1,5 @@
 name: ci-talk-example
-run-name: ${{ github.actor }} running cmake workflow
+run-name: ${{ github.actor }} | ${{ github.event.head_commit.message }}
 on:
   push:
     branches:
