@@ -1,0 +1,30 @@
+name: ci-talk-example
+run-name: ${{ github.actor }} running cmake workflow
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+env:
+  BUILD_TYPE: Debug
+
+#Run everything into single job because otherwise it is
+#needed to cache the dependencies and results of each job.
+jobs:
+  ci:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: sudo apt-get install libgtest-dev valgrind clang-tools -y
+      - name: Configure cmake
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      - name: Run test
+        working-directory: ${{github.workspace}}/build
+        run: cd ${{github.workspace}}/build && ./test
+      - name: Run test with valgrind
+        run: cd ${{github.workspace}}/build && valgrind --leak-check=full ./test
