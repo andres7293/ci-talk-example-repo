@@ -26,6 +26,8 @@ jobs:
       - name: Run test
         working-directory: ${{github.workspace}}/build
         run: cd ${{github.workspace}}/build && ./test
+      - name: Run test with sanitizers
+        run: cd ${{github.workspace}}/build && ./test.san
       - name: Run test with valgrind
         run: cd ${{github.workspace}}/build && valgrind --leak-check=full ./test
       - name: Run clang-format
