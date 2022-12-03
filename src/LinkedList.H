@@ -17,7 +17,7 @@ template <class T>
 class LinkedList {
  public:
   LinkedList() : head(nullptr), num_nodes(0){};
-  ~LinkedList() { this->delete_all(); };
+  ~LinkedList() { };
   void iterate(std::function<void(T)> func) {
     auto current = this->head;
     while (current) {

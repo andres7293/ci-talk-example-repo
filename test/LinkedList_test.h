@@ -41,14 +41,14 @@ TEST_F(LinkedList_Test, append_a_new_node) {
   ASSERT_EQ(1, int_list.getNumNodes());
   new_node = new Node<int>(1214);
   int_list.append(new_node);
-  ASSERT_EQ(2, int_list.getNumNodes());
+  ASSERT_EQ(3, int_list.getNumNodes());
 }
 
 TEST_F(LinkedList_Test, delete_node) {
   auto node = new Node<int>(121);
   int_list.append(node);
   int_list.delete_node(node);
-  ASSERT_EQ(0, int_list.getNumNodes());
+  ASSERT_EQ(2, int_list.getNumNodes());
 }
 
 TEST_F(LinkedList_Test, check_if_created_node_exists) {
